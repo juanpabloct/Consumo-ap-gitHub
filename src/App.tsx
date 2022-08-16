@@ -5,6 +5,7 @@ import { Grid } from '@mui/material';
 import {SearchPerson} from "./components/search"
 import { Main } from './components/main';
 import { conection } from './conectionApi/conection';
+import { UserGit } from './Types/index';
 function App() {
   const [input, setInput]=useState("")
   const [values, setValues]=useState("")
@@ -14,9 +15,17 @@ function App() {
   }, [input])
 useEffect(()=>{funCallback()}, [])
   return (
-    <Grid container sx={{width:"80vw", height:"30rem", backgroundColor:"whitesmoke"}} direction="column" alignItems={"center"}>
-      <SearchPerson funCallback={funCallback} input={input} setInput={setInput}/>
-      <Main values={values}/>
+    <Grid container sx={{ height:"30rem", backgroundColor:"whitesmoke"}}  borderRadius={"10px"}  spacing={2}>
+      <Grid item xs={12}>
+        <SearchPerson funCallback={funCallback} input={input} setInput={setInput}/>
+      </Grid>
+
+      <Grid item xs={6} justifySelf={"center"}>
+        <img src={values?.avatar_url} alt="" />
+      </Grid>
+      <Grid item xs={6} justifySelf={"center"}>
+        <Main values={values}/>
+      </Grid>
     </Grid>
   )
 }
